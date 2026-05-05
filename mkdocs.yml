@@ -1,0 +1,8 @@
+site_name: Spark Delta MinIO Study
+site_url: https://vanessaugioni.github.io/spark-delta-minio-study/
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
