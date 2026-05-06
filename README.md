@@ -1,4 +1,4 @@
-# Projeto: Apache Spark com Minio e SQL
+# Projeto: Apache Spark com MinIO e SQL
 
 > Pipeline de dados com *Apache Spark*, *Delta Lake*, *MinIO* com *SQL*| Arquitetura de Dados | SATC
 
