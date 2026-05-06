@@ -1,0 +1,46 @@
+site_name: Spark + Delta Lake + MinIO
+site_description: Pipeline de dados com Apache Spark, Delta Lake e MinIO
+site_url: https://vanessaugioni.github.io/spark-delta-minio-study
+repo_url: https://github.com/vanessaugioni/spark-delta-minio-study
+repo_name: vanessaugioni/spark-delta-minio-study
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para modo escuro
+    - scheme: slate
+      primary: deep purple
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - toc.integrate
+
+nav:
+  - Home: index.md
+  - Pipeline: pipeline.md
+  - Spark: spark.md
+  - Delta Lake: delta.md
+  - MinIO: minio.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - tables

@@ -116,6 +116,14 @@ poetry install
 
 > Isso cria a pasta `.venv/` com todas as dependências do `pyproject.toml`.
 
+### 5. Deploy da documentação MkDocs
+
+Use o ambiente Poetry para garantir que o `mkdocs-material` e `pymdown-extensions` estejam ativos:
+
+```bash
+poetry run mkdocs gh-deploy
+```
+
 ## Dependências
 
 Versões definidas no `pyproject.toml`:
