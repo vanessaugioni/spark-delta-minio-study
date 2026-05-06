@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#apache-spark" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -423,6 +428,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spark
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -440,6 +465,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spark-no-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spark no pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versao-utilizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versão utilizada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-dados-com-spark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluxo de dados com Spark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-de-leitura-de-csv-do-minio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo de leitura de CSV do MinIO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplo-de-escrita-em-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo de escrita em Delta
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integracao-com-minio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integração com MinIO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-que-usar-spark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por que usar Spark?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebooks-relacionados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebooks relacionados
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -519,55 +651,68 @@
   
 
 
-  <h1>Spark</h1>
+<h1 id="apache-spark">Apache Spark</h1>
+<h2 id="spark-no-pipeline">Spark no pipeline</h2>
+<p>Neste projeto, o Apache Spark é a engine de processamento responsável por ler os dados de origem no MinIO e transformar essas cargas em tabelas Delta Lake.</p>
+<p>Spark é usado para:</p>
+<ul>
+<li>ler arquivos CSV do bucket <code>landing-zone</code> do MinIO</li>
+<li>aplicar esquemas e conversões de tipos</li>
+<li>escrever tabelas Delta no bucket <code>bronze</code></li>
+<li>executar operações DML de forma transacional em Delta Lake</li>
+</ul>
+<h2 id="versao-utilizada">Versão utilizada</h2>
+<ul>
+<li>Apache Spark 3.5.1</li>
+<li>PySpark como interface Python</li>
+</ul>
+<h2 id="fluxo-de-dados-com-spark">Fluxo de dados com Spark</h2>
+<p>A etapa principal de Spark é implementada em <code>notebook/01_csv_to_delta.ipynb</code>.</p>
+<ol>
+<li>Spark lê arquivos CSV via S3A do MinIO.</li>
+<li>Os dados são convertidos para DataFrames com os tipos corretos.</li>
+<li>O DataFrame é gravado como Delta em MinIO <code>bronze</code>.</li>
+</ol>
+<h2 id="exemplo-de-leitura-de-csv-do-minio">Exemplo de leitura de CSV do MinIO</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">&#39;SparkDeltaMinIO&#39;</span><span class="p">)</span> \
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">csv_path</span> <span class="o">=</span> <span class="s1">&#39;s3a://landing-zone/departamentos/*.csv&#39;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;header&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="exemplo-de-escrita-em-delta">Exemplo de escrita em Delta</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">output_path</span> <span class="o">=</span> <span class="s1">&#39;s3a://bronze/departamentos&#39;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;delta&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="integracao-com-minio">Integração com MinIO</h2>
+<p>Para que Spark acesse o MinIO, o notebook configura as propriedades S3A como:</p>
+<ul>
+<li><code>fs.s3a.endpoint</code> para o endpoint do MinIO</li>
+<li><code>fs.s3a.access.key</code> / <code>fs.s3a.secret.key</code></li>
+<li><code>fs.s3a.path.style.access</code> = <code>true</code></li>
+<li><code>fs.s3a.impl</code> para o conector S3A</li>
+</ul>
+<h2 id="por-que-usar-spark">Por que usar Spark?</h2>
+<ul>
+<li>Processa grandes volumes de dados de forma distribuída</li>
+<li>Permite conversão em Delta Lake com transações ACID</li>
+<li>Suporta leitura direta de objetos S3/MinIO</li>
+<li>Facilita operações analíticas e transformação ETL</li>
+</ul>
+<h2 id="notebooks-relacionados">Notebooks relacionados</h2>
+<ul>
+<li><code>notebook/01_csv_to_delta.ipynb</code>: converte CSVs em Delta Lake</li>
+<li><code>notebook/02_dml_delta.ipynb</code>: demonstra operações INSERT/UPDATE/DELETE e histórico Delta</li>
+</ul>
 
-<p>theme:
-name: material
-  language: pt
-  palette:
-    - scheme: default
-      primary: deep purple
-      accent: orange
-      toggle:
-        icon: material/brightness-7
-        name: Mudar para modo escuro
-    - scheme: slate
-      primary: deep purple
-      accent: orange
-      toggle:
-        icon: material/brightness-4
-        name: Mudar para modo claro
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - content.code.copy
-    - content.code.annotate
-    - toc.integrate</p>
-<p>nav:
-- Home: index.md
-  - Pipeline: pipeline.md
-  - Spark: spark.md
-  - Delta Lake: delta.md
-  - MinIO: minio.md</p>
-<p>markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
-  - admonition
-  - pymdownx.details
-  - tables</p>
 
 
 
 
 
-
-
-  
-  
 
 
 
