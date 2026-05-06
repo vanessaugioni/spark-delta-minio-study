@@ -455,10 +455,121 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#visao-geral" class="md-nav__link">
+  <a href="#visao-geral-do-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão Geral
+        Visão Geral do Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etapas-do-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Etapas do Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Etapas do Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-ingestao-para-landing-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ingestão para landing-zone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conversao-para-delta-lake-bronze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Conversão para Delta Lake (bronze)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-operacoes-dml-e-historico-delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Operações DML e histórico Delta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitetura de Dados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitetura de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-executar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como executar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebooks-do-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebooks do pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beneficios-do-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefícios do pipeline
       
     </span>
   </a>
@@ -575,8 +686,98 @@
 
 
 <h1 id="pipeline-de-dados">Pipeline de Dados</h1>
-<h2 id="visao-geral">Visão Geral</h2>
-<p>Escrever após definir banco...</p>
+<h2 id="visao-geral-do-pipeline">Visão Geral do Pipeline</h2>
+<p>Este projeto implementa um pipeline de dados simplificado para demonstrar como integrar <strong>Apache Spark</strong>, <strong>Delta Lake</strong> e <strong>MinIO</strong> em uma arquitetura de dados moderna.</p>
+<p>O fluxo principal é:</p>
+<ol>
+<li>Dados de origem em CSV são copiados para o bucket <code>landing-zone</code> do MinIO.</li>
+<li>Spark lê esses arquivos CSV diretamente de MinIO.</li>
+<li>Os dados são convertidos para o formato <strong>Delta Lake</strong> na camada <code>bronze</code>.</li>
+<li>Operações DML (INSERT, UPDATE e DELETE) são realizadas no Delta e exibem os recursos de histórico e time travel.</li>
+</ol>
+<h2 id="etapas-do-pipeline">Etapas do Pipeline</h2>
+<h3 id="1-ingestao-para-landing-zone">1. Ingestão para <code>landing-zone</code></h3>
+<p>A camada <code>landing-zone</code> recebe os arquivos CSV de origem. Neste projeto, os CSVs originais estão em <code>data/</code> e são carregados automaticamente pelo serviço <code>minio-setup</code> definido em <code>docker-compose.yml</code>.</p>
+<p>Arquivos usados:
+- <code>data/departamentos.csv</code>
+- <code>data/funcionarios.csv</code>
+- <code>data/projetos.csv</code>
+- <code>data/alocacoes.csv</code></p>
+<h3 id="2-conversao-para-delta-lake-bronze">2. Conversão para Delta Lake (<code>bronze</code>)</h3>
+<p>O notebook <code>notebook/01_csv_to_delta.ipynb</code> realiza a conversão:</p>
+<ul>
+<li>lê CSVs do bucket <code>landing-zone</code></li>
+<li>ajusta tipos e esquemas</li>
+<li>grava tabelas Delta no bucket <code>bronze</code></li>
+</ul>
+<p>Esta etapa cria uma base de tabelas Delta transacionais, pronta para consultas analíticas e atualizações confiáveis.</p>
+<h3 id="3-operacoes-dml-e-historico-delta">3. Operações DML e histórico Delta</h3>
+<p>O notebook <code>notebook/02_dml_delta.ipynb</code> demonstra:</p>
+<ul>
+<li>INSERT de novos registros</li>
+<li>UPDATE em registros existentes</li>
+<li>DELETE lógico/físico, conforme o caso</li>
+<li>consulta de histórico de versões</li>
+<li>uso de <code>time travel</code> para inspeção de dados antigos</li>
+</ul>
+<h2 id="arquitetura-de-dados">Arquitetura de Dados</h2>
+<p>A arquitetura deste pipeline pode ser representada como:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>CSV files (data/) ──▶ MinIO landing-zone ──▶ Spark ──▶ MinIO bronze (Delta)
+</code></pre></div>
+<h3 id="componentes">Componentes</h3>
+<ul>
+<li>MinIO: armazenamento S3 compatível para <code>landing-zone</code> e <code>bronze</code></li>
+<li>Spark: processamento distribuído e leitura de dados via S3A</li>
+<li>Delta Lake: formato de tabela transacional com ACID, histórico e time travel</li>
+<li>JupyterLab: ambiente interativo para executar os notebooks</li>
+</ul>
+<h2 id="como-executar">Como executar</h2>
+<ol>
+<li>Subir o ambiente:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<ol>
+<li>Criar o ambiente Poetry e instalar dependências:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>poetry<span class="w"> </span>config<span class="w"> </span>virtualenvs.in-project<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>poetry<span class="w"> </span>install
+</code></pre></div>
+<ol>
+<li>
+<p>Executar os notebooks no JupyterLab ou via <code>poetry run jupyter lab</code>.</p>
+</li>
+<li>
+<p>Rodar o notebook <code>notebook/01_csv_to_delta.ipynb</code> para criar as tabelas Delta.</p>
+</li>
+<li>Rodar o notebook <code>notebook/02_dml_delta.ipynb</code> para ver as operações DML e o histórico.</li>
+</ol>
+<h2 id="notebooks-do-pipeline">Notebooks do pipeline</h2>
+<table>
+<thead>
+<tr>
+<th>Notebook</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>notebook/01_csv_to_delta.ipynb</code></td>
+<td>Converte CSVs do MinIO <code>landing-zone</code> para tabelas Delta em <code>bronze</code></td>
+</tr>
+<tr>
+<td><code>notebook/02_dml_delta.ipynb</code></td>
+<td>Demonstra operações INSERT/UPDATE/DELETE e histórico Delta</td>
+</tr>
+</tbody>
+</table>
+<h2 id="beneficios-do-pipeline">Benefícios do pipeline</h2>
+<ul>
+<li>Separação de camadas de ingestão e armazenamento</li>
+<li>Dados em formato aberto e transacional com Delta Lake</li>
+<li>Uso de MinIO como armazenamento S3 compatível</li>
+<li>Ambiente replicável via Docker e Poetry</li>
+</ul>
 
 
 
