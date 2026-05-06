@@ -10,6 +10,9 @@ authors     = [
 readme = "README.md"
 package-mode = false
 
+site_url: https://vanessaugioni.github.io/spark-delta-minio-study
+repo_url: https://github.com/vanessaugioni/spark-delta-minio-study
+
 [tool.poetry.dependencies]
 python      = "^3.11"
 pyspark     = "3.5.1"
@@ -24,3 +27,44 @@ ghp-import = "^2.1.0"
 [build-system]
 requires      = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para modo escuro
+    - scheme: slate
+      primary: deep purple
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - toc.integrate
+
+nav:
+  - Home: index.md
+  - Apache Spark: spark.md
+  - Delta Lake: delta.md
+  - MinIO: minio.md
+  - Pipeline: pipeline.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - tables
