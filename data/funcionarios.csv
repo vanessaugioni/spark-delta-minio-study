@@ -1,0 +1,4 @@
+id,nome,cargo,salario,departamento_id
+1,Ana,Analista,4500.0,1
+2,João,Desenvolvedor,5200.0,2
+3,Carla,Técnico de Suporte,3800.0,2

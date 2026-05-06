@@ -19,13 +19,17 @@ services:
     container_name: minio-setup
     depends_on:
       - minio
+    volumes:
+      - ./data:/seed:ro
     entrypoint: >
       /bin/sh -c "
         sleep 5;
         mc alias set local http://minio:9000 minioadmin minioadmin;
         mc mb --ignore-existing local/landing-zone;
         mc mb --ignore-existing local/bronze;
-        echo 'Buckets criados';
+        mc cp --recursive /seed/*.csv local/landing-zone/;
+        mc ls local/landing-zone;
+        echo 'Buckets criados e dados de landing-zone importados';
       "
 
 volumes:
