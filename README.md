@@ -1,6 +1,6 @@
 # Projeto: Apache Spark com MinIO e SQL
 
-> Pipeline de dados com *Apache Spark*, *Delta Lake*, *MinIO* com *SQL*| Arquitetura de Dados | SATC
+> Pipeline de dados com *Apache Spark*, *Delta Lake*, *MinIO* com *SQL* | Arquitetura de Dados | SATC
 
 [![Python](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Poetry](https://img.shields.io/badge/gerenciador-poetry-60A5FA)](https://python-poetry.org/)
@@ -28,20 +28,20 @@ As explicações sobre as tecnologias utilizadas estão disponíveis no MkDocs d
 ## Estrutura do Projeto
 
 ```
-datalakehouse-study/
-├── docs/                     # Fontes do MkDocs
-├── data/                # Base de dados
+spark-delta-minio-study/
+├── docs/                          # Fontes do MkDocs
+├── data/                          # Base de dados
     ├── alocacoes.csv
-    ├── adepartamentos.csv
+    ├── departamentos.csv
     ├── funcionarios.csv
     ├── projetos.csv
 ├── notebooks/
-    ├── tmp                   # Gerado automaticamente pelo Spark
+    ├── tmp                        # Gerado automaticamente pelo Spark
     ├── 01_csv_to_delta.ipynb      # Notebook Delta Lake - CSV
     ├── 02_dml_delta.ipynb         # Notebook Delta Lake - DML
-├── warehouse/                # Gerado automaticamente pelo Spark
+├── warehouse/                     # Gerado automaticamente pelo Spark
 ├── poetry.lock
-├── pyproject.toml            # Dependências gerenciadas pelo Poetry
+├── pyproject.toml                 # Dependências gerenciadas pelo Poetry
 └── README.md
 ```
 
@@ -176,4 +176,5 @@ Acesse **http://localhost:8888** e abra, em ordem:
 - 📘 [Documentação PySpark](https://spark.apache.org/docs/latest/api/python/)
 - 📘 [Documentação Poetry](https://python-poetry.org/docs/)
 
-> Desenvolvido para a disciplina de Arquitetura de Dados — SATC
+
+Desenvolvido para a disciplina de Arquitetura de Dados — SATC
