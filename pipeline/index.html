@@ -10,29 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://vanessaugioni.github.io/spark-delta-minio-study/">
+        <link rel="canonical" href="https://vanessaugioni.github.io/spark-delta-minio-study/pipeline/">
       
       
+        <link rel="prev" href="..">
       
-        <link rel="next" href="pipeline/">
+      
+        <link rel="next" href="../spark/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Spark + Delta Lake + MinIO</title>
+        <title>Pipeline - Spark + Delta Lake + MinIO</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +53,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#spark-delta-minio" class="md-skip">
+        <a href="#pipeline-de-dados" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -90,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="." title="Spark + Delta Lake + MinIO" class="md-header__button md-logo" aria-label="Spark + Delta Lake + MinIO" data-md-component="logo">
+    <a href=".." title="Spark + Delta Lake + MinIO" class="md-header__button md-logo" aria-label="Spark + Delta Lake + MinIO" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Pipeline
             
           </span>
         </div>
@@ -219,11 +221,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -240,9 +240,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="pipeline/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -261,7 +263,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="spark/" class="md-tabs__link">
+      <a href="../spark/" class="md-tabs__link">
         
   
   
@@ -280,7 +282,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="delta/" class="md-tabs__link">
+      <a href="../delta/" class="md-tabs__link">
         
   
   
@@ -299,7 +301,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="minio/" class="md-tabs__link">
+      <a href="../minio/" class="md-tabs__link">
         
   
   
@@ -336,7 +338,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Spark + Delta Lake + MinIO" class="md-nav__button md-logo" aria-label="Spark + Delta Lake + MinIO" data-md-component="logo">
+    <a href=".." title="Spark + Delta Lake + MinIO" class="md-nav__button md-logo" aria-label="Spark + Delta Lake + MinIO" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -363,19 +365,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -391,7 +384,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -400,10 +392,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="pipeline/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -419,6 +438,37 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visão Geral
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -430,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="spark/" class="md-nav__link">
+      <a href="../spark/" class="md-nav__link">
         
   
   
@@ -457,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="delta/" class="md-nav__link">
+      <a href="../delta/" class="md-nav__link">
         
   
   
@@ -484,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="minio/" class="md-nav__link">
+      <a href="../minio/" class="md-nav__link">
         
   
   
@@ -524,257 +574,9 @@
   
 
 
-<h1 id="spark-delta-minio">🚀 Spark + Delta + MinIO</h1>
-<h1 id="projeto-spark-delta-lake-minio">Projeto Spark + Delta Lake + MinIO</h1>
-<p>Projeto de estudo de Data Lakehouse.</p>
-<blockquote>
-<p>Pipeline de dados com <strong>Apache Spark</strong>, <strong>Delta Lake</strong> e <strong>MinIO</strong> | Arquitetura de Dados | SATC</p>
-</blockquote>
-<h2 id="objetivo">📌 Objetivo</h2>
-<h2 id="demonstrar-uso-de-spark-com-delta-lake-e-minio">Demonstrar uso de Spark com Delta Lake e MinIO.</h2>
-<h2 id="arquitetura">🧱 Arquitetura</h2>
-<ul>
-<li>Spark</li>
-<li>Delta Lake</li>
-<li>MinIO</li>
-</ul>
-<h2 id="sobre-o-projeto">Sobre o Projeto</h2>
-<p>Este projeto implementa um pipeline de dados completo seguindo a <strong>Arquitetura Medalhão</strong>, extraindo dados de um banco relacional SQLite, carregando-os em um Object Storage (MinIO) e convertendo-os para o formato <strong>Delta Lake</strong> com suporte a operações transacionais.</p>
-<p>O objetivo é demonstrar como construir uma camada de ingestão e armazenamento confiável para um Data Lakehouse, utilizando ferramentas open-source amplamente adotadas no mercado.</p>
-<hr />
-<h2 id="arquitetura-do-pipeline">Arquitetura do Pipeline</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────┐     ┌──────────────────┐     ┌───────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│     SQLite      │────▶│   MinIO (S3)     │────▶│   MinIO (S3)      │
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│                 │     │   landing-zone/  │     │   bronze/         │
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   empresa.db    │     │   (CSVs)         │     │   (Delta Tables)  │
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                 │     │                  │     │                   │
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   3 tabelas     │     │   1 CSV/tabela   │     │   INSERT/UPDATE   │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                 │     │                  │     │   DELETE/HISTORY  │
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└─────────────────┘     └──────────────────┘     └───────────────────┘
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    scripts/                 Notebook 01            Notebooks 02/03
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    init_db.py               (Extração)             (Delta + DML)
-</code></pre></div>
-<hr />
-<h2 id="cenario-dos-dados">Cenário dos Dados</h2>
-<p>O banco de dados simula o domínio de <strong>recursos humanos de uma empresa</strong>, com 3 tabelas relacionadas:</p>
-<h3 id="tabela-departamentos">Tabela: <code>departamentos</code></h3>
-<table>
-<thead>
-<tr>
-<th>Coluna</th>
-<th>Tipo</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>INTEGER</td>
-<td>Identificador único</td>
-</tr>
-<tr>
-<td><code>nome</code></td>
-<td>TEXT</td>
-<td>Nome do departamento</td>
-</tr>
-<tr>
-<td><code>sigla</code></td>
-<td>TEXT</td>
-<td>Sigla do departamento</td>
-</tr>
-</tbody>
-</table>
-<h3 id="tabela-funcionarios">Tabela: <code>funcionarios</code></h3>
-<table>
-<thead>
-<tr>
-<th>Coluna</th>
-<th>Tipo</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>INTEGER</td>
-<td>Identificador único</td>
-</tr>
-<tr>
-<td><code>nome</code></td>
-<td>TEXT</td>
-<td>Nome do funcionário</td>
-</tr>
-<tr>
-<td><code>cargo</code></td>
-<td>TEXT</td>
-<td>Cargo atual</td>
-</tr>
-<tr>
-<td><code>salario</code></td>
-<td>REAL</td>
-<td>Salário em R$</td>
-</tr>
-<tr>
-<td><code>departamento_id</code></td>
-<td>INTEGER</td>
-<td>Chave estrangeira para departamentos</td>
-</tr>
-<tr>
-<td><code>ativo</code></td>
-<td>INTEGER</td>
-<td>Status (1 = ativo, 0 = inativo)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="tabela-projetos">Tabela: <code>projetos</code></h3>
-<table>
-<thead>
-<tr>
-<th>Coluna</th>
-<th>Tipo</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>id</code></td>
-<td>INTEGER</td>
-<td>Identificador único</td>
-</tr>
-<tr>
-<td><code>nome</code></td>
-<td>TEXT</td>
-<td>Nome do projeto</td>
-</tr>
-<tr>
-<td><code>status</code></td>
-<td>TEXT</td>
-<td><code>em_andamento</code>, <code>concluido</code> ou <code>pausado</code></td>
-</tr>
-<tr>
-<td><code>funcionario_id</code></td>
-<td>INTEGER</td>
-<td>Chave estrangeira para funcionarios</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="modelo-er">Modelo ER</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌──────────────────────┐         ┌─────────────────────────┐
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│    departamentos     │         │       funcionarios       │
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│──────────────────────│         │─────────────────────────│
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│ id          INT (PK) │◀────────│ departamento_id  INT    │
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│ nome        TEXT     │         │ id              INT (PK) │
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│ sigla       TEXT     │         │ nome            TEXT     │
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>└──────────────────────┘         │ cargo           TEXT     │
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                                 │ salario         REAL     │
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                                 │ ativo           INT      │
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                                 └────────────┬────────────┘
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                                              │
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>                                 ┌────────────▼────────────┐
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                                 │        projetos          │
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                                 │─────────────────────────│
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                                 │ id          INT (PK)     │
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                                 │ nome        TEXT         │
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>                                 │ status      TEXT         │
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                                 │ funcionario_id  INT      │
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                                 └─────────────────────────┘
-</code></pre></div>
-<hr />
-<h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
-<table>
-<thead>
-<tr>
-<th>Tecnologia</th>
-<th>Versão</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Apache Spark (PySpark)</td>
-<td>3.5.1</td>
-</tr>
-<tr>
-<td>Delta Lake</td>
-<td>3.2.0</td>
-</tr>
-<tr>
-<td>MinIO</td>
-<td>latest</td>
-</tr>
-<tr>
-<td>SQLite</td>
-<td>built-in Python</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>3.11</td>
-</tr>
-<tr>
-<td>Poetry</td>
-<td>latest</td>
-</tr>
-<tr>
-<td>JupyterLab</td>
-<td>4.x</td>
-</tr>
-<tr>
-<td>Docker</td>
-<td>24.x</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="estrutura-dos-notebooks">Estrutura dos Notebooks</h2>
-<table>
-<thead>
-<tr>
-<th>Notebook</th>
-<th>Operações</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>01_extracao_landing_zone.ipynb</code></td>
-<td>Lê SQLite → grava CSV no MinIO (<code>landing-zone</code>)</td>
-</tr>
-<tr>
-<td><code>02_csv_to_delta.ipynb</code></td>
-<td>Lê CSV do MinIO → converte para Delta Lake (<code>bronze</code>)</td>
-</tr>
-<tr>
-<td><code>03_dml_delta.ipynb</code></td>
-<td>INSERT, UPDATE, DELETE + HISTORY + TIME TRAVEL</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="integrantes">Integrantes</h2>
-<table>
-<thead>
-<tr>
-<th>Nome</th>
-<th>GitHub</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Vanessa Ugioni</td>
-<td><a href="https://github.com/vanessaugioni">@vanessaugioni</a></td>
-</tr>
-<tr>
-<td>Gabriel Muller</td>
-<td><a href="https://github.com/GabrielNM12">@GabrielNM12</a></td>
-</tr>
-<tr>
-<td>Bettina da Silva</td>
-<td><a href="https://github.com/berbett">@berbett</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="repositorio">Repositório</h2>
-<p>🔗 <a href="https://github.com/vanessaugioni/spark-delta-minio-study">github.com/vanessaugioni/spark-delta-minio-study</a></p>
+<h1 id="pipeline-de-dados">Pipeline de Dados</h1>
+<h2 id="visao-geral">Visão Geral</h2>
+<p>Escrever após definir banco...</p>
 
 
 
@@ -830,10 +632,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.code.annotate", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.code.annotate", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

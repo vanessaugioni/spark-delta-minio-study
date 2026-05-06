@@ -2,6 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://vanessaugioni.github.io/spark-delta-minio-study/</loc>
-         <lastmod>2026-05-05</lastmod>
+         <lastmod>2026-05-06</lastmod>
+    </url>
+    <url>
+         <loc>https://vanessaugioni.github.io/spark-delta-minio-study/delta/</loc>
+         <lastmod>2026-05-06</lastmod>
+    </url>
+    <url>
+         <loc>https://vanessaugioni.github.io/spark-delta-minio-study/minio/</loc>
+         <lastmod>2026-05-06</lastmod>
+    </url>
+    <url>
+         <loc>https://vanessaugioni.github.io/spark-delta-minio-study/pipeline/</loc>
+         <lastmod>2026-05-06</lastmod>
+    </url>
+    <url>
+         <loc>https://vanessaugioni.github.io/spark-delta-minio-study/spark/</loc>
+         <lastmod>2026-05-06</lastmod>
     </url>
 </urlset>
