@@ -543,17 +543,7 @@
 <p>O objetivo é demonstrar como construir uma camada de ingestão e armazenamento confiável para um Data Lakehouse, utilizando ferramentas open-source amplamente adotadas no mercado.</p>
 <hr />
 <h2 id="arquitetura-do-pipeline">Arquitetura do Pipeline</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────┐     ┌──────────────────┐     ┌───────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│     SQLite      │────▶│   MinIO (S3)     │────▶│   MinIO (S3)      │
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│                 │     │   landing-zone/  │     │   bronze/         │
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   empresa.db    │     │   (CSVs)         │     │   (Delta Tables)  │
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                 │     │                  │     │                   │
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   3 tabelas     │     │   1 CSV/tabela   │     │   INSERT/UPDATE   │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                 │     │                  │     │   DELETE/HISTORY  │
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└─────────────────┘     └──────────────────┘     └───────────────────┘
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    scripts/                 Notebook 01            Notebooks 02/03
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    init_db.py               (Extração)             (Delta + DML)
-</code></pre></div>
+<p><img alt="Arquitetura Pipeline" src="images/arquitetura.png" /></p>
 <hr />
 <h2 id="cenario-dos-dados">Cenário dos Dados</h2>
 <p>O banco de dados simula o domínio de <strong>recursos humanos de uma empresa</strong>, com 3 tabelas relacionadas:</p>
@@ -660,26 +650,7 @@
 </table>
 <hr />
 <h2 id="modelo-er">Modelo ER</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌──────────────────────┐         ┌─────────────────────────┐
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│    departamentos     │         │       funcionarios       │
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│──────────────────────│         │─────────────────────────│
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│ id          INT (PK) │◀────────│ departamento_id  INT    │
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│ nome        TEXT     │         │ id              INT (PK) │
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│ sigla       TEXT     │         │ nome            TEXT     │
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>└──────────────────────┘         │ cargo           TEXT     │
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                                 │ salario         REAL     │
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                                 │ ativo           INT      │
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                                 └────────────┬────────────┘
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                                              │
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>                                 ┌────────────▼────────────┐
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                                 │        projetos          │
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                                 │─────────────────────────│
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                                 │ id          INT (PK)     │
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                                 │ nome        TEXT         │
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>                                 │ status      TEXT         │
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                                 │ funcionario_id  INT      │
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                                 └─────────────────────────┘
-</code></pre></div>
+<p><img alt="Modelo ER" src="images/modelo.png" /></p>
 <hr />
 <h2 id="tecnologias-utilizadas">Tecnologias Utilizadas</h2>
 <table>
