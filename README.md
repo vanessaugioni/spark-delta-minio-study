@@ -28,7 +28,21 @@ As explicações sobre as tecnologias utilizadas estão disponíveis no MkDocs d
 ## Estrutura do Projeto
 
 ```
-
+datalakehouse-study/
+├── docs/                     # Fontes do MkDocs
+├── data/                # Base de dados
+    ├── alocacoes.csv
+    ├── adepartamentos.csv
+    ├── funcionarios.csv
+    ├── projetos.csv
+├── notebooks/
+    ├── tmp                   # Gerado automaticamente pelo Spark
+    ├── 01_csv_to_delta.ipynb      # Notebook Delta Lake - CSV
+    ├── 02_dml_delta.ipynb         # Notebook Delta Lake - DML
+├── warehouse/                # Gerado automaticamente pelo Spark
+├── poetry.lock
+├── pyproject.toml            # Dependências gerenciadas pelo Poetry
+└── README.md
 ```
 
 ## Sobre o Projeto
