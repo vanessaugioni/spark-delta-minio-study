@@ -1,12 +1,14 @@
-# Spark + Delta Lake + MinIO (Jupyter Lab)
+# Projeto: Apache Spark com Minio e SQL
 
-> Pipeline de dados com *Apache Spark*, *Delta Lake* e *MinIO* | Arquitetura de Dados | SATC
+> Pipeline de dados com *Apache Spark*, *Delta Lake*, *MinIO* com *SQL*| Arquitetura de Dados | SATC
 
 [![Python](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Poetry](https://img.shields.io/badge/gerenciador-poetry-60A5FA)](https://python-poetry.org/)
 [![Apache Spark](https://img.shields.io/badge/spark-3.5.1-E25A1C?logo=apachespark&logoColor=white)](https://spark.apache.org/)
 [![Delta Lake](https://img.shields.io/badge/delta_lake-3.2.0-003366?logoColor=white)](https://delta.io/)
 [![MinIO](https://img.shields.io/badge/minio-object_storage-C72E49?logo=minio&logoColor=white)](https://min.io/)
+[![MkDocs](https://img.shields.io/badge/docs-mkdocs-526CFE?logo=materialformkdocs&logoColor=white)](https://vanessaugioni.github.io/datalakehouse-study)
+
 
 ## Participantes
 
@@ -16,25 +18,17 @@
 | Gabriel Muller | [@GabrielNM12](https://github.com/GabrielNM12) |
 | Bettina da Silva | [@berbett](https://github.com/berbett) |
 
+
+## Documentação 
+As explicações sobre as tecnologias utilizadas estão disponíveis no MkDocs do projeto:
+
+🔗 https://vanessaugioni.github.io/spark-delta-minio-study
+
+
 ## Estrutura do Projeto
 
 ```
-data/
-  departamentos.csv
-  funcionarios.csv
-  projetos.csv
-  alocacoes.csv
-notebook/
-  01_csv_to_delta.ipynb
-  02_dml_delta.ipynb
-.env.example
-.gitignore
-.python-version
-README.md
-feat: update project folder
-docker-compose.yml
-pyproject.toml
-poetry.lock
+
 ```
 
 ## Sobre o Projeto
