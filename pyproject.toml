@@ -21,6 +21,9 @@ mkdocs = "^1.6.1"
 mkdocs-material = "^9.7.6"
 pymdown-extensions = "^10.0"
 ghp-import = "^2.1.0"
+ipykernel = "^7.2.0"
+sqlalchemy = "^2.0.49"
+minio = "^7.2.20"
 
 [build-system]
 requires      = ["poetry-core"]
